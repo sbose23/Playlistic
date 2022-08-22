@@ -1,30 +1,23 @@
+import { useReducer } from 'react';
 import ReactPlayer from 'react-player/youtube'
 import VideoForm from './VideoForm';
-import { useState } from 'react';
-
 //test one second video: https://youtu.be/Wch3gJG2GJ4
 
-function Playlist(){
-    //need to change to useReducer probably
-    const [videos, setVideos] = useState([]);
-    console.log(videos);
-    
-    //if no videos exist return this
-    if (videos.length === 0){
-        return (      
-        <div>
-            <VideoForm videos={videos} setVideos={setVideos}/>
-            <br></br>
-            No videos
-        </div>
-        )
-    }
+type PlaylistProps = {
+    videos: Array<string>,
+    setVideos: React.Dispatch<React.SetStateAction<Array<string>>>
+}
 
+function Playlist(props: PlaylistProps){
+    const [videoIndex, nextVideo] = useReducer(index => index + 1, 0)
+    console.log("Videos: " + props.videos.toString())
     return (
         <div>
-            <VideoForm videos={videos} setVideos={setVideos}/>
+            <VideoForm videos={props.videos} setVideos={props.setVideos}/>
             <br></br>
-            <ReactPlayer loop = {true} url = {videos} controls={true}/>
+            {props.videos.length === 0 ? <p>No videos</p>:<ReactPlayer loop = {true} 
+                                                            url = {props.videos[videoIndex]} 
+                                                            controls={true} onEnded={nextVideo}/>}
         </div>
     )
 }
