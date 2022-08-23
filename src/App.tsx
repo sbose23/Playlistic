@@ -11,7 +11,6 @@ function App() {
     <div>
       <UserAuth/>
       <div className="App">
-        
         <Playlist videos={videos} setVideos={setVideos}/>
         <br></br><br></br><br></br>
         <footer>

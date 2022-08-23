@@ -33,3 +33,8 @@ input:hover{
     background-color: black;
     color:greenyellow
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}

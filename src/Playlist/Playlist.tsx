@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import ReactPlayer from 'react-player/youtube'
 import VideoForm from './VideoForm';
 import '../styles/Playlist.css'
-import TypeWriter from 'typewriter-effect';
+import TypeWriter, { TypewriterClass } from 'typewriter-effect';
 import {useAuth0} from '@auth0/auth0-react';
 
 //test one second video: https://youtu.be/Wch3gJG2GJ4
@@ -19,9 +19,8 @@ function Playlist(props: PlaylistProps){
     return (
         <div>
             <h3>
-                <TypeWriter onInit={(t) => t.typeString("Playlistic: A Playlist Creation and Sharing Platform 🔥").start()}/>
+                Playlistic:<TypeWriter onInit={(t: TypewriterClass) => t.typeString("A Playlist Creation and Sharing Platform 🔥").start()}/>
             </h3>
-            <br></br>
             <button onClick={() => console.log(user)}>console log user test</button>
             <br></br>
             <VideoForm videos={props.videos} setVideos={props.setVideos}/>

@@ -14,13 +14,13 @@ import './styles/UserAuth.css'
  
 function UserAuth(){
 
-    const {loginWithRedirect, logout, isAuthenticated} = useAuth0()
+    const {loginWithRedirect, logout, user, isAuthenticated} = useAuth0()
 
     return (
         <div class="auth">
-            {isAuthenticated ? <button class="logout" onClick={logout}>Logout</button> :
+            {isAuthenticated ? <button class="logout" onClick={logout}>Logout 👋</button> :
                                <button class="login" onClick={loginWithRedirect}>Login or Sign-up </button>}
-            {isAuthenticated ? null : <p class="small">(Redirects to Auth0)</p>}
+            {isAuthenticated ? <p class="small">Hello {user.nickname}!</p> : <p class="small">(Redirects to Auth0)</p>}
         </div>
     )
 }
