@@ -23,13 +23,14 @@ function VideoForm (props: VideoFormProps) {
 
     return (
         <div>
-            <h3>Add Video: </h3>
+            <span>
             <form onSubmit={addVideo}>
-                <input size = {30} required placeholder="Enter a YouTube video address"
+                <input size = {30} required placeholder="Enter a YouTube video address... 👈"
                         onChange={(e) => setAddress(e.target.value)}/>
-                <br></br>
-                <button className = "submit">Add Video</button>
+                <br></br><br></br>
+                <button className = "submit">Add Video ✔</button>
             </form>
+            </span>
 
         </div>
     );

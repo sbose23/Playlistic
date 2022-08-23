@@ -1,6 +1,10 @@
 import { useReducer } from 'react';
 import ReactPlayer from 'react-player/youtube'
 import VideoForm from './VideoForm';
+import '../styles/Playlist.css'
+import TypeWriter from 'typewriter-effect';
+import {useAuth0} from '@auth0/auth0-react';
+
 //test one second video: https://youtu.be/Wch3gJG2GJ4
 
 type PlaylistProps = {
@@ -9,13 +13,20 @@ type PlaylistProps = {
 }
 
 function Playlist(props: PlaylistProps){
+    const {user} = useAuth0() //testing
     const [videoIndex, nextVideo] = useReducer(index => index + 1, 0)
     console.log("Videos: " + props.videos.toString())
     return (
         <div>
+            <h3>
+                <TypeWriter onInit={(t) => t.typeString("Playlistic: A Playlist Creation and Sharing Platform 🔥").start()}/>
+            </h3>
+            <br></br>
+            <button onClick={() => console.log(user)}>console log user test</button>
+            <br></br>
             <VideoForm videos={props.videos} setVideos={props.setVideos}/>
             <br></br>
-            {props.videos.length === 0 ? <p>No videos</p>:<ReactPlayer loop = {true} 
+            {props.videos.length === 0 ? <p>No videos 😢</p> : <ReactPlayer loop = {true} 
                                                             url = {props.videos[videoIndex]} 
                                                             controls={true} onEnded={nextVideo}/>}
         </div>

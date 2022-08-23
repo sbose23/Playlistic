@@ -1,0 +1,35 @@
+input{
+    font-family: 'Tahoma';
+    color: rgb(0, 0, 0);
+    background-color: whitesmoke;
+    font-weight: 500;
+    font-size: 3.6vmin;
+    padding-left: 3vmin;
+    width: 25em;
+    height: 2em;
+    border-color: black;
+    border-radius: 32px;
+    transition: 0.5s;
+    outline-color: black;
+}
+input:hover{
+    background-color: black;
+    color:violet;
+}
+.submit {
+    font-family: 'Tahoma';
+    color: black;
+    font-weight: 500;
+    font-size: 2.5vmin;
+    padding: 2vmin;
+    background-color: whitesmoke;
+    border-color: black;
+    border-radius: 32px;
+    outline-color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.submit:hover{
+    background-color: black;
+    color:greenyellow
+}

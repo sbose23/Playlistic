@@ -2,17 +2,27 @@
   text-align: center;
 }
 
-.App-header {
+body {
   background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 3.9vmin;
+  color: whitesmoke;
 }
 
-.App-link {
-  color: #61dafb;
+footer {
+  font-size: 3vmin;
+}
+
+a:link{
+  color: orangered
+}
+a:visited {
+  color: violet;
+}
+a:hover {
+  color: hotpink;
 }
