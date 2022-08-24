@@ -3,7 +3,7 @@
 }
 .login {
     font-family: 'Tahoma';
-    color: black;
+    color: darkgreen;
     font-weight: 500;
     font-size: 2.5vmin;
     padding: 0.6vmin;
@@ -20,7 +20,7 @@
 }
 .logout {
     font-family: 'Tahoma';
-    color: black;
+    color: darkred;
     font-weight: 500;
     font-size: 2.5vmin;
     padding: 0.6vmin;
