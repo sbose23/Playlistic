@@ -5,7 +5,7 @@ const { NetlifyJwtVerifier } = require('@serverless-jwt/netlify');
 const apiKey:string = (process.env.REACT_APP_API_KEY as string)
 const apiAddress:string = (process.env.REACT_APP_API_ADDRESS as string)
 
-//JWT verifier. if the JWT passed in as a header is not verified, this function cannot execute
+//JWT verifier. if the JWT passed in as an authorization header is not verified, this function cannot execute
 const verifyJwt = NetlifyJwtVerifier({issuer: 'https://playlistic.us.auth0.com/', 
                                         audience: 'https://playlisticauthapi/'})
 
@@ -14,16 +14,16 @@ const handler: Handler =  verifyJwt(async (event: any, context: any) => {
     const headers = event['headers']
 
     //get variables from header
-    const token:string = headers['authorization']?.split(' ')[1]
-    const action:string = headers['action']
-    const playlistID:string = headers['playlistid']
-    const playlistName:string = headers['playlistname']
-    const videosString:string = headers['videosstring']
+    const token: string = headers['authorization']?.split(' ')[1]
+    const action: string = headers['action']
+    const playlistID: string = headers['playlistid']
+    const playlistName: string = headers['playlistname']
+    const videosString: string = headers['videosstring']
 
-    //ge user nickname/userID from auth0 api with the JWT
+    //get user nickname/userID from auth0 api with the JWT
     const userResponse: AxiosResponse<any, any> = await axios.get('https://playlistic.us.auth0.com/userinfo',
         {headers:{authorization: `Bearer ${token}`}})
-    const userID:string = userResponse.data.nickname
+    const userID: string = userResponse.data.nickname
 
     //variable to save response
     let response: any = null
@@ -52,7 +52,6 @@ const handler: Handler =  verifyJwt(async (event: any, context: any) => {
     //return response from API call
     return {
         statusCode: 200,
-        body: JSON.stringify(response)
-        }})
+        body: JSON.stringify(response)}})
 
 export { handler };
