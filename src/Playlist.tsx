@@ -1,4 +1,4 @@
-import { CSSProperties, useReducer } from 'react';
+import { CSSProperties, useReducer, useState } from 'react';
 import ReactPlayer from 'react-player/youtube'
 import VideoForm from './VideoForm';
 import VideoList from './VideoList';
@@ -12,8 +12,8 @@ const api:string = (process.env.REACT_APP_ADPLAYLIST as string);
 const videoPlayerStyle: CSSProperties = {
     display: 'flex',
     paddingLeft: '70%',
-    color: 'aqua',
-    textDecoration: 'underline'
+    color: 'lightskyblue',
+    fontWeight: 'bold'
 }
 
 //test one second video: https://youtu.be/Wch3gJG2GJ4
@@ -29,7 +29,7 @@ function Playlist(props: PlaylistProps) {
       //  const token = await getAccessTokenSilently();
         //console.log(token)
     //}
-    //getJWT()
+    //getJWT(), this function go in SaveButton prob
     async function addOrDeletePlaylist(action: "Add" | "Delete", playlistID:string,
                                         playlistName: string = 'Unnamed', playlistVideos: Array<string> = []) {
         let playlist:string = "";
@@ -50,7 +50,8 @@ function Playlist(props: PlaylistProps) {
         console.log(response)
     }
 
-    const [videoIndex, nextVideo] = useReducer(index => index + 1, 0);
+    const [videoIndex, nextVideo] = useReducer(index => index + 1, 0)
+    const [playing, setPlaying] = useState<boolean>(false)
     //console.log("Videos: " + props.videos.toString());
     return (
         <div>
@@ -68,12 +69,12 @@ function Playlist(props: PlaylistProps) {
                 <p>No videos 😢</p> : 
                 <div>
                     <br></br>
-                    <VideoList videos={props.videos} setVideos={props.setVideos}/>
+                    <VideoList videos={props.videos} setVideos={props.setVideos} 
+                                setPlaying={setPlaying} playing={playing}/>
                     <p style={videoPlayerStyle}>Video Player 📻 </p>
-                    <ReactPlayer loop={true} width={'27%'} height={'200px'} style={videoPlayerStyle}
+                    <ReactPlayer loop={true} width={'27%'} height={'200px'} style={videoPlayerStyle} playing={playing}
                                 url={props.videos[videoIndex]} controls={true} onEnded={nextVideo}/>
-                </div>}
-                                                                  
+                </div>}                                                   
         </div>
     )
 }

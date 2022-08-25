@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.10.2",
+    "@hello-pangea/dnd": "^16.0.0",
     "@netlify/functions": "^1.2.0",
     "@serverless-jwt/netlify": "^0.2.1",
     "@testing-library/jest-dom": "^5.16.5",

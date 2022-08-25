@@ -41,3 +41,68 @@ input:hover{
 .player {
     display: inline-block;
 }
+
+.list {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px lightblue;
+    padding: 10px;
+    margin-bottom: 1em;
+    margin: auto;
+    width: fit-content;
+  }
+
+.video {
+    display: block;
+    margin: 15px 10px;
+  }
+.video:hover {
+    color:violet
+}
+
+.video:active{
+    color: violet
+}
+
+.videoList {
+    display: grid;
+}
+
+.play {
+    font-family: 'Tahoma';
+    color: rgb(27, 188, 27);
+    font-weight: 500;
+    font-size: 3vmin;
+    padding: 0.6vmin;
+    background-color: black;
+    border-color: black;
+    border-radius: 5px;
+    outline-color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.play:hover {
+    background-color: black;
+    color:greenyellow
+}
+
+.pause {
+    font-family: 'Tahoma';
+    color: lightcoral;
+    font-weight: 500;
+    font-size: 3vmin;
+    padding: 0.6vmin;
+    background-color: black;
+    border-color: black;
+    border-radius: 5px;
+    outline-color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.pause:hover {
+    background-color: black;
+    color: red
+}
