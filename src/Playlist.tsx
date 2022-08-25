@@ -2,7 +2,7 @@ import { CSSProperties, useReducer } from 'react';
 import ReactPlayer from 'react-player/youtube'
 import VideoForm from './VideoForm';
 import VideoList from './VideoList';
-import '../styles/Playlist.css'
+import './styles/Playlist.css'
 import TypeWriter, { TypewriterClass } from 'typewriter-effect';
 import {useAuth0} from '@auth0/auth0-react';
 import axios from 'axios';
@@ -59,23 +59,21 @@ function Playlist(props: PlaylistProps) {
                     t.typeString("A Playlist Creation and Sharing Platform 🔥").start()}/>
             </h3>
             <button onClick={() => null}>console log something</button>
+
             <br></br>
             <VideoForm videos={props.videos} setVideos={props.setVideos}/>
+
             <br></br>
-            <VideoList videos={props.videos} setVideos={props.setVideos}/>
-            <br></br>
-            <div>
-                {
-                props.videos.length === 0 ? <p>No videos 😢</p> : 
-                                            <div>
-                                                <p style={videoPlayerStyle}>Video Player 📻 </p>
-                                                <ReactPlayer loop = {true} width={'27%'} height={'200px'}
-                                                             style={videoPlayerStyle}
-                                                             url = {props.videos[videoIndex]} 
-                                                             controls={true} onEnded={nextVideo}/>
-                                            </div>
-                }
-            </div>                                                            
+            {props.videos.length === 0 ? 
+                <p>No videos 😢</p> : 
+                <div>
+                    <br></br>
+                    <VideoList videos={props.videos} setVideos={props.setVideos}/>
+                    <p style={videoPlayerStyle}>Video Player 📻 </p>
+                    <ReactPlayer loop={true} width={'27%'} height={'200px'} style={videoPlayerStyle}
+                                url={props.videos[videoIndex]} controls={true} onEnded={nextVideo}/>
+                </div>}
+                                                                  
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactPlayer from 'react-player';
-import '../../src/styles/App.css';
+import './styles/App.css';
 
 type VideoFormProps = {
     videos: Array<string>,

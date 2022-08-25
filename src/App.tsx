@@ -1,6 +1,5 @@
 import './styles/App.css';
-import './Playlist/Playlist'
-import Playlist from './Playlist/Playlist';
+import Playlist from './Playlist';
 import UserAuth from './UserAuth';
 import { useState } from 'react';
 

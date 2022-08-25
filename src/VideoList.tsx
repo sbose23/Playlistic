@@ -1,4 +1,4 @@
-import '../styles/Playlist.css'
+import './styles/Playlist.css'
 
 type VideoFormProps = {
     videos: Array<string>,
