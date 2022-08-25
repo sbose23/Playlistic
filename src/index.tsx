@@ -10,9 +10,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Auth0Provider 
-      domain='playlistic.us.auth0.com'
-      clientId='lKUMbru9ououI3x88ZB5QmRnKz1oANVT'
-      redirectUri={window.location.origin}>
+      domain={process.env.REACT_APP_AUTH_DOMAIN as string}
+      clientId={process.env.REACT_APP_AUTH_CLIENTID as string}
+      redirectUri={window.location.origin}
+      audience='https://playlisticauthapi/'
+      scope='openid profile email'>
     <App />
     </Auth0Provider>
   </React.StrictMode>

@@ -34,7 +34,10 @@ input:hover{
     color:greenyellow
 }
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
+}
+.player {
+    display: inline-block;
 }
