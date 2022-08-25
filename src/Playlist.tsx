@@ -30,6 +30,7 @@ function Playlist(props: PlaylistProps) {
         //console.log(token)
     //}
     //getJWT(), this function go in SaveButton prob
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async function addOrDeletePlaylist(action: "Add" | "Delete", playlistID:string,
                                         playlistName: string = 'Unnamed', playlistVideos: Array<string> = []) {
         let playlist:string = "";
