@@ -1,19 +1,10 @@
 // @ts-nocheck 
 import {useAuth0} from '@auth0/auth0-react';
 import './styles/UserAuth.css'
-
-// <li>
-//    
- // </li>
- //        <li>
- // <button onClick={loginWithRedirect}>Login</button>
- // </li>
- //        <li>
- // <button onClick={logout}>Logout</button>
- // </li>
  
 function UserAuth(){
 
+    //import required functions from auth0
     const {loginWithRedirect, logout, user, isAuthenticated} = useAuth0()
 
     return (

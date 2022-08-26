@@ -1,6 +1,7 @@
 import './styles/Playlist.css'
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
+//props type
 type VideoFormProps = {
     videos: Array<string>,
     setVideos: React.Dispatch<React.SetStateAction<Array<string>>>,
@@ -10,8 +11,10 @@ type VideoFormProps = {
 
 function VideoList(props: VideoFormProps){
     
+    //handle list drop event 
     const handleDrop = (droppedItem: any) => {
-        console.log(droppedItem)
+
+        //copy current list to new variable
         let newList = [...props.videos]
 
         //drop location in list, reorder the list
@@ -19,11 +22,12 @@ function VideoList(props: VideoFormProps){
             const [reorderedItem] = newList.splice(droppedItem.source.index, 1)
             newList.splice(droppedItem.destination.index, 0, reorderedItem)
         
-        //if drop location outside, list delete item
+        //if drop location outside the list, delete item
         } else {
             newList.splice(droppedItem.source.index, 1)
         }
-        
+
+        //set videos prop to the new list
         props.setVideos(newList)}
     
     return (

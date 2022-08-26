@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ReactPlayer from 'react-player';
 import './styles/App.css';
 
+//props type
 type VideoFormProps = {
     videos: Array<string>,
     setVideos: React.Dispatch<React.SetStateAction<Array<string>>>
@@ -9,8 +10,10 @@ type VideoFormProps = {
 
 function VideoForm (props: VideoFormProps) {
 
+    //video (address) variable state
     const [address, setAddress] = useState<string>("");
 
+    //function to add video if video exists
     const addVideo = async (e: any) => {
         e.preventDefault();
         if (ReactPlayer.canPlay(address)){
