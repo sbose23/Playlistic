@@ -1,28 +1,18 @@
 import { Handler } from "@netlify/functions";
 import axios, { AxiosResponse } from "axios";
-const { NetlifyJwtVerifier } = require("@serverless-jwt/netlify");
 
 const apiKey: string = process.env.REACT_APP_API_KEY as string;
 const apiAddress: string = process.env.REACT_APP_API_ADDRESS as string;
 
-//JWT verifier. if the JWT passed in as an authorization header is not verified, this function cannot execute
-const verifyJwt = NetlifyJwtVerifier({
-  issuer: "https://playlistic.us.auth0.com/",
-  audience: "https://playlisticauthapi/",
-});
-
-const handler: Handler = verifyJwt(async (event: any, context: any) => {
+const handler: Handler = async (event: any, context: any) => {
   //variable for status code, default is 400 error
   let statusCode: number = 400;
 
-  const headers = event["headers"];
-
-  //get variables from header
-  const token: string = headers["authorization"]?.split(" ")[1];
-  const action: string = headers["action"];
-  const playlistID: string = headers["playlistid"];
-  const playlistName: string = headers["playlistname"];
-  const videosString: string = headers["videosstring"];
+  const token = event.queryStringParameters?.token;
+  const action = event.queryStringParameters?.action;
+  const playlistID = event.queryStringParameters?.playlistID;
+  const playlistName = event.queryStringParameters?.playlistName;
+  const videosString = event.queryStringParameters?.videosString;
 
   //get user nickname/userID from auth0 api with the JWT
   const userResponse: AxiosResponse<any, any> = await axios.get(
@@ -77,8 +67,9 @@ const handler: Handler = verifyJwt(async (event: any, context: any) => {
   //return response from API call
   return {
     statusCode: statusCode,
+    "Access-Control-Allow-Origin": "*",
     body: JSON.stringify(response),
   };
-});
+};
 
 export { handler };
