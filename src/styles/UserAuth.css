@@ -1,6 +1,7 @@
 .auth {
     margin-left: 87%;
 }
+
 .login {
     font-family: 'Tahoma';
     color: darkgreen;
@@ -14,10 +15,12 @@
     transition: 0.5s;
     cursor: pointer;
 }
-.login:hover{
+
+.login:hover {
     background-color: black;
-    color:greenyellow
+    color: greenyellow
 }
+
 .logout {
     font-family: 'Tahoma';
     color: darkred;
@@ -31,12 +34,13 @@
     transition: 0.5s;
     cursor: pointer;
 }
-.logout:hover{
+
+.logout:hover {
     background-color: black;
-    color:red
+    color: red
 }
 
-.small{
+.small {
     font-size: 2vmin;
-    
+
 }

@@ -1,4 +1,4 @@
-input{
+input {
     font-family: 'Tahoma';
     color: rgb(0, 0, 0);
     background-color: whitesmoke;
@@ -12,10 +12,12 @@ input{
     transition: 0.5s;
     outline-color: black;
 }
-input:hover{
+
+input:hover {
     background-color: black;
-    color:violet;
+    color: violet;
 }
+
 .submit {
     font-family: 'Tahoma';
     color: black;
@@ -29,15 +31,17 @@ input:hover{
     transition: 0.5s;
     cursor: pointer;
 }
-.submit:hover{
+
+.submit:hover {
     background-color: black;
-    color:greenyellow
+    color: greenyellow
 }
 
 .header {
     display: flex;
     justify-content: space-between;
 }
+
 .player {
     display: inline-block;
 }
@@ -51,17 +55,18 @@ input:hover{
     margin-bottom: 1em;
     margin: auto;
     width: fit-content;
-  }
+}
 
 .video {
     display: block;
     margin: 15px 10px;
-  }
-.video:hover {
-    color:violet
 }
 
-.video:active{
+.video:hover {
+    color: violet
+}
+
+.video:active {
     color: violet
 }
 
@@ -85,7 +90,7 @@ input:hover{
 
 .play:hover {
     background-color: black;
-    color:greenyellow
+    color: greenyellow
 }
 
 .pause {
