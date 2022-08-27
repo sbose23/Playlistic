@@ -15,21 +15,28 @@ type UserPlaylistProps = {
 };
 
 function UserPlaylists(props: UserPlaylistProps) {
+  console.log("component rerender");
+
   //destrcture set state for useEffect dependency
   const setUserPlaylists = props.setUserPlaylists;
+
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   async function deletePlaylist(playlist: string) {
+    if (!isAuthenticated) {
+      return;
+    }
+
     const playlistID = playlist.split("-")[0];
     const token = await getAccessTokenSilently();
     const response = await axios
-      .get(process.env.REACT_APP_ADPLAYLIST as string, {
-        headers: {
-          authorization: `Bearer ${token}`,
-          action: "Delete",
-          playlistID: playlistID,
-        },
-      })
+      .get(
+        (process.env.REACT_APP_ADPLAYLIST as string) +
+          "?token=" +
+          token +
+          "&action=Delete&playlistID=" +
+          playlistID
+      )
       .catch((e) => console.log(e));
     if (response?.status === 200) {
       let newUserPlaylists = JSON.parse(JSON.stringify(props.userPlaylists));
@@ -38,20 +45,24 @@ function UserPlaylists(props: UserPlaylistProps) {
     }
   }
 
-  //emulate componentDidMount
+  //emulate componentDidMount, execute only on component render
   useEffect(() => {
     async function getUserPlaylists() {
-      console.log("doing useEffect");
+      if (!isAuthenticated) {
+        return;
+      }
       const token = await getAccessTokenSilently();
-      const response = await axios
-        .get(process.env.REACT_APP_GETUSERPLAYLISTS as string, {
-          headers: { authorization: `Bearer ${token}` },
+      await axios
+        .get(
+          (process.env.REACT_APP_GETUSERPLAYLISTS as string) + "?token=" + token
+        )
+        .then((response) => {
+          setUserPlaylists(response?.data);
         })
         .catch((error) => console.log(error));
-      setUserPlaylists(response?.data);
     }
     getUserPlaylists();
-  }, [getAccessTokenSilently, setUserPlaylists]);
+  }, [getAccessTokenSilently, setUserPlaylists, isAuthenticated]);
 
   const playlists = Object.keys(props.userPlaylists);
 
@@ -73,36 +84,28 @@ function UserPlaylists(props: UserPlaylistProps) {
       My Playlists:
       {isAuthenticated ? (
         <div>
-          {playlists.length === 0 ? (
-            <p>Add a playlist</p>
-          ) : (
-            <div>
-              {" "}
-              <br></br>
-              {playlists.map((playlist) => {
-                return (
-                  <div>
-                    <button
-                      className="playlistButton"
-                      onClick={() =>
-                        props.setVideos(props.userPlaylists[playlist])
-                      }
-                    >
-                      {playlist.split("-")[1]}
-                    </button>{" "}
-                    <button
-                      className="playlistDelete"
-                      onClick={() => deletePlaylist(playlist)}
-                    >
-                      Delete
-                    </button>
-                    <p className="playlistID">ID: {playlist.split("-")[0]}</p>
-                    <hr></hr>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          {" "}
+          <br></br>
+          {playlists.map((playlist) => {
+            return (
+              <div>
+                <button
+                  className="playlistButton"
+                  onClick={() => props.setVideos(props.userPlaylists[playlist])}
+                >
+                  {playlist.split("-")[1]}
+                </button>{" "}
+                <button
+                  className="playlistDelete"
+                  onClick={() => deletePlaylist(playlist)}
+                >
+                  Delete
+                </button>
+                <p className="playlistID">ID: {playlist.split("-")[0]}</p>
+                <hr></hr>
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div>
