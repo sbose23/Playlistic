@@ -10,6 +10,7 @@ type VideoFormProps = {
 function SaveButton(props: VideoFormProps) {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function addPlaylist(
     playlistID: string,
     playlistName: string,
