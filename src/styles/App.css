@@ -40,10 +40,55 @@ a:hover {
   outline-style: dotted;
   outline-width: 2px;
   font-size: 3.9vmin;
-  color: aqua;
+  color: white;
+  font-weight: bold;
   float: left;
   margin-left: 1%;
   width: 9em;
   margin-right: -16%;
   padding: 1%;
+}
+
+.playlistID {
+  font-weight: normal;
+  font-size: 2.6vmin;
+}
+
+.playlistButton{
+  font-family: 'Tahoma';
+  color: skyblue;
+  font-weight: 500;
+  font-size: 3.5vmin;
+  padding: 0.6vmin;
+  background-color: black;
+  border-color: black;
+  border-radius: 5px;
+  outline-color: black;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.play:hover {
+  background-color: black;
+  color: lightblue
+}
+
+.playlistDelete {
+  font-family: 'Tahoma';
+  color: red;
+  display: inline;
+  font-weight: 500;
+  font-size: 2.6vmin;
+  padding: 0.6vmin;
+  background-color: black;
+  border-color: black;
+  border-radius: 5px;
+  outline-color: black;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.playlistDelete:hover {
+  background-color: black;
+  color: red
 }

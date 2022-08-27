@@ -12,6 +12,9 @@ const verifyJwt = NetlifyJwtVerifier({
 });
 
 const handler: Handler = verifyJwt(async (event: any, context: any) => {
+  //variable for status code, default is 400 error
+  let statusCode: number = 400;
+
   const headers = event["headers"];
 
   //get variables from header
@@ -42,6 +45,7 @@ const handler: Handler = verifyJwt(async (event: any, context: any) => {
         },
       })
       .then((success) => {
+        statusCode = 200;
         response = success["data"];
       })
       .catch((error) => {
@@ -62,6 +66,7 @@ const handler: Handler = verifyJwt(async (event: any, context: any) => {
         },
       })
       .then((success) => {
+        statusCode = 200;
         response = success["data"];
       })
       .catch((error) => {
@@ -71,7 +76,7 @@ const handler: Handler = verifyJwt(async (event: any, context: any) => {
 
   //return response from API call
   return {
-    statusCode: 200,
+    statusCode: statusCode,
     body: JSON.stringify(response),
   };
 });
