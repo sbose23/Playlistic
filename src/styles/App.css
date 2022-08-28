@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-  display:flex;
+  display: flex;
 }
 
-.main{
+.main {
   margin: auto;
 }
 
@@ -25,17 +25,19 @@ footer {
   text-align: center;
 }
 
-a:link{
+a:link {
   color: orangered
 }
+
 a:visited {
   color: violet;
 }
+
 a:hover {
   color: hotpink;
 }
 
-.userPlaylists{
+.userPlaylists {
   outline: pink;
   outline-style: dotted;
   outline-width: 2px;
@@ -54,7 +56,7 @@ a:hover {
   font-size: 2.6vmin;
 }
 
-.playlistButton{
+.playlistButton {
   font-family: 'Tahoma';
   color: skyblue;
   font-weight: 500;

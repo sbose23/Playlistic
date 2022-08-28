@@ -3,6 +3,7 @@ import Playlist from "./Playlist";
 import UserAuth from "./UserAuth";
 import { useState } from "react";
 import UserPlaylists from "./UserPlaylists";
+import PublicSearch from "./PublicSearch";
 
 function App() {
   //state to keep track of current playlist videos
@@ -21,6 +22,9 @@ function App() {
       <UserAuth />
       <div className="App">
         <div className="userPlaylists">
+          <PublicSearch setVideos={setVideos} />
+          <br></br>
+          <hr></hr>
           <UserPlaylists
             setVideos={setVideos}
             userPlaylists={userPlaylists}
@@ -29,7 +33,12 @@ function App() {
         </div>
         <br></br>
         <div className="main">
-          <Playlist videos={videos} setVideos={setVideos} />
+          <Playlist
+            userPlaylists={userPlaylists}
+            setUserPlaylists={setUserPlaylists}
+            videos={videos}
+            setVideos={setVideos}
+          />
         </div>
         <br></br>
         <br></br>

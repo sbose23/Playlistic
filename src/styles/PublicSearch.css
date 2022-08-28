@@ -1,0 +1,32 @@
+.searchInput {
+    font-size: small;
+    width: 10em;
+    height: 1.5em;
+    padding-left: 1vmin;
+}
+
+.searchButton {
+    font-family: 'Tahoma';
+    color: black;
+    font-weight: 500;
+    font-size: 2.5vmin;
+    padding: 0.7vmin;
+    padding-top: 0.3vmin;
+    padding-bottom: 0.3vmin;
+    background-color: whitesmoke;
+    border-color: black;
+    border-radius: 10px;
+    outline-color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.searchButton:hover {
+    background-color: black;
+    color: greenyellow
+}
+
+.searchTag {
+    font-size: 2.3vmin;
+    font-weight: 500;
+}
