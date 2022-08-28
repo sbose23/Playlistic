@@ -18,7 +18,7 @@ function VideoForm(props: VideoFormProps) {
     if (ReactPlayer.canPlay(address)) {
       let newVideoList = [...props.videos];
       let playlistTag: string = "";
-      if (props.videos[props.videos.length - 1].startsWith("Playlist")) {
+      if (props.videos.length > 0 && props.videos[props.videos.length - 1].startsWith("Playlist")) {
         playlistTag = newVideoList.pop() as string;
         newVideoList.push(address);
         newVideoList.push(playlistTag);

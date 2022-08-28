@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import { useState } from "react";
 import "./styles/SaveButton.css";
 
 type userPlaylistsType = {
@@ -9,6 +10,7 @@ type userPlaylistsType = {
 //props type
 type VideoFormProps = {
   videos: Array<string>;
+  setVideos: React.Dispatch<React.SetStateAction<Array<string>>>;
   userPlaylists: userPlaylistsType;
   setUserPlaylists: React.Dispatch<React.SetStateAction<userPlaylistsType>>;
 };
@@ -21,28 +23,26 @@ function generateID() {
 
 function SaveButton(props: VideoFormProps) {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const [currentName, setCurrentName] = useState<string>("");
   const last: string = props.videos[props.videos.length - 1];
   let idAndName: string,
     playlistID: string,
-    currentName: string = "";
+    playlistName: string = "";
 
-  if (last.startsWith("Playlist")) {
+  if (props.videos.length > 0 && last.startsWith("Playlist")) {
     idAndName = last.split("~")[1];
     playlistID = idAndName.split("-")[0];
-    currentName = idAndName?.split("-")[1];
+    playlistName = idAndName?.split("-")[1];
   } else {
-    currentName = "Unnamed";
+    playlistName = "Unnamed";
   }
-  const playlistName = currentName;
   
   async function addPlaylist(
     playlistID: string,
     playlistName: string,
     playlistVideos: Array<string> = []
   ) {
-    if (!isAuthenticated) {
-      return;
-    }
+
     console.log(
       "Adding playlist with " + playlistID + playlistName + playlistVideos
     );
@@ -74,17 +74,26 @@ function SaveButton(props: VideoFormProps) {
   async function handleSave(e: any) {
     e.preventDefault();
 
+    async function addNew(videos: Array<string>){
+      const id = generateID()
+      await addPlaylist(id, currentName, videos);
+      let newVids: Array<string> = [...props.videos];
+      newVids.push("Playlist~" + id + "-" + currentName)
+      props.setVideos(newVids)
+    }
+
     //if videos have a playlist identification, update it accordingly
     if (last.startsWith("Playlist")) {
       //remove playlist identification tag
       const videos = [...props.videos];
       videos.pop();
+      //console.log("status " + currentName + playlistName)
       //if the current name is the same as user given name, use same playlistID
       currentName === playlistName
         ? await addPlaylist(playlistID, playlistName, videos)
-        : await addPlaylist(generateID(), playlistName, videos);
+        : await addNew(videos);
     } else {
-      await addPlaylist(generateID(), playlistName, props.videos);
+      await addNew(props.videos);
     }
   }
 
@@ -96,9 +105,9 @@ function SaveButton(props: VideoFormProps) {
             <small className="playlistNameTag"> Playlist Name: </small>
             <input
               className="playlistNameInput"
-              placeholder={currentName}
+              placeholder={playlistName}
               maxLength={10}
-              onChange={(e) => currentName = e.target.value}
+              onChange={(e) => setCurrentName(e.target.value)}
             />
             <button className="saveButton">Save 💾</button>
           </form>
