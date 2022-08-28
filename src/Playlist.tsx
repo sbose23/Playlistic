@@ -57,6 +57,7 @@ function Playlist(props: PlaylistProps) {
 
           <SaveButton
             videos={props.videos}
+            setVideos={props.setVideos}
             userPlaylists={props.userPlaylists}
             setUserPlaylists={props.setUserPlaylists}
           />

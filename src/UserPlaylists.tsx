@@ -15,7 +15,6 @@ type UserPlaylistProps = {
 };
 
 function UserPlaylists(props: UserPlaylistProps) {
-  console.log("component rerender");
 
   //destrcture set state for useEffect dependency
   const setUserPlaylists = props.setUserPlaylists;
@@ -96,7 +95,6 @@ function UserPlaylists(props: UserPlaylistProps) {
                       ...props.userPlaylists[playlist],
                       "Playlist~" + playlist,
                     ];
-                    console.log(d);
                     props.setVideos(d);
                   }}
                 >

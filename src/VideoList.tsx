@@ -29,7 +29,6 @@ function VideoList(props: VideoFormProps) {
     } else {
       newList.splice(droppedItem.source.index, 1);
     }
-    console.log("tag " + playlistTag)
     newList.push(playlistTag)
     //set videos prop to the new list
     props.setVideos(newList);
