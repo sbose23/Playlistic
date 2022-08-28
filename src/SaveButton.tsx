@@ -47,8 +47,7 @@ function SaveButton(props: VideoFormProps) {
       "Adding playlist with " + playlistID + playlistName + playlistVideos
     );
     const token = await getAccessTokenSilently();
-    //CHANGE DELIMITER
-    const videosString: string = playlistVideos.join("-");
+    const videosString: string = playlistVideos.join("~");
     await axios
       .get(
         (process.env.REACT_APP_ADPLAYLIST as string) +
