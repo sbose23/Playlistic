@@ -10,9 +10,10 @@ const handler: Handler = async (event, context) => {
   let response: any = null;
 
   //get IDs from query
-  const userID: string = event.queryStringParameters?.userid as string;
-  const playlistID: string = event.queryStringParameters?.playlistid as string;
-
+  const userID: string = event.queryStringParameters?.userID as string;
+  const playlistID: string = event.queryStringParameters?.playlistID as string;
+  console.log(userID)
+  console.log(playlistID)
   //make request, if success (response code 200 from API), set response to data (videos)
   //if error (response code 400 from API), set response to error message
   await axios
@@ -24,6 +25,7 @@ const handler: Handler = async (event, context) => {
       },
     })
     .then((success) => {
+      console.log(success)
       response = success["data"];
       statusCode = 200;
     })
