@@ -1,0 +1,31 @@
+.saveButton {
+    font-family: 'Tahoma';
+    color: lightsalmon;
+    font-weight: 550;
+    font-size: 3.8vmin;
+    padding: 0.6vmin;
+    background-color: black;
+    border-color: black;
+    border-radius: 5px;
+    outline-color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: black;
+    color: lightsalmon;
+}
+
+.playlistNameInput {
+    font-size: 2.3vmin;
+    width: 8em;
+    height: 1.5em;
+    padding-left: 1vmin;
+    margin-right: 1em;
+}
+
+.playlistNameTag {
+    font-size: 3.8vmin;
+    font-weight: 500;
+}

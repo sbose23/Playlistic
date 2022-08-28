@@ -40,7 +40,7 @@ function UserPlaylists(props: UserPlaylistProps) {
       .catch((e) => console.log(e));
     if (response?.status === 200) {
       let newUserPlaylists = JSON.parse(JSON.stringify(props.userPlaylists));
-      delete newUserPlaylists.playlist;
+      delete newUserPlaylists[playlist];
       setUserPlaylists(newUserPlaylists);
     }
   }
@@ -69,7 +69,7 @@ function UserPlaylists(props: UserPlaylistProps) {
   if (!isAuthenticated) {
     return (
       <div>
-        My Playlists:<br></br>
+        🎵 My Playlists 🎵 <br></br>
         <br></br>
         <br></br>
         <br></br>
@@ -81,7 +81,7 @@ function UserPlaylists(props: UserPlaylistProps) {
 
   return (
     <div>
-      My Playlists:
+      🎵 My Playlists 🎵
       {isAuthenticated ? (
         <div>
           {" "}
@@ -91,7 +91,14 @@ function UserPlaylists(props: UserPlaylistProps) {
               <div>
                 <button
                   className="playlistButton"
-                  onClick={() => props.setVideos(props.userPlaylists[playlist])}
+                  onClick={() => {
+                    const d = [
+                      ...props.userPlaylists[playlist],
+                      "Playlist~" + playlist,
+                    ];
+                    console.log(d);
+                    props.setVideos(d);
+                  }}
                 >
                   {playlist.split("-")[1]}
                 </button>{" "}

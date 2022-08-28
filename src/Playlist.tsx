@@ -8,16 +8,19 @@ import SaveButton from "./SaveButton";
 
 const videoPlayerStyle: CSSProperties = {
   display: "flex",
-  paddingLeft: "70%",
   color: "lightskyblue",
   fontWeight: "bold",
 };
 
-//test one second video: https://youtu.be/Wch3gJG2GJ4
+type userPlaylistsType = {
+  [item: string]: Array<string>;
+};
 
 type PlaylistProps = {
   videos: Array<string>;
   setVideos: React.Dispatch<React.SetStateAction<Array<string>>>;
+  userPlaylists: userPlaylistsType;
+  setUserPlaylists: React.Dispatch<React.SetStateAction<userPlaylistsType>>;
 };
 
 function Playlist(props: PlaylistProps) {
@@ -34,9 +37,8 @@ function Playlist(props: PlaylistProps) {
           }
         />
       </h3>
-      <button onClick={() => null}>console log something</button>
-
       <br></br>
+
       <VideoForm videos={props.videos} setVideos={props.setVideos} />
 
       <br></br>
@@ -52,12 +54,17 @@ function Playlist(props: PlaylistProps) {
             playing={playing}
           />
           <br></br>
-          <SaveButton videos={props.videos} setVideos={props.setVideos} />
+
+          <SaveButton
+            videos={props.videos}
+            userPlaylists={props.userPlaylists}
+            setUserPlaylists={props.setUserPlaylists}
+          />
+
           <p style={videoPlayerStyle}>Video Player 📻 </p>
           <ReactPlayer
             loop={true}
-            width={"27%"}
-            height={"200px"}
+            width={"100vmin"}
             style={videoPlayerStyle}
             playing={playing}
             url={props.videos[videoIndex]}

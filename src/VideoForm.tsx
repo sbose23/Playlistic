@@ -16,7 +16,16 @@ function VideoForm(props: VideoFormProps) {
   const addVideo = async (e: any) => {
     e.preventDefault();
     if (ReactPlayer.canPlay(address)) {
-      props.setVideos([...props.videos, address]);
+      let newVideoList = [...props.videos];
+      let playlistTag: string = "";
+      if (props.videos[props.videos.length - 1].startsWith("Playlist")) {
+        playlistTag = newVideoList.pop() as string;
+        newVideoList.push(address);
+        newVideoList.push(playlistTag);
+        props.setVideos(newVideoList);
+      } else {
+        props.setVideos([...props.videos, address]);
+      }
     } else {
       alert("Invalid YouTube video");
     }
