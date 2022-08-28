@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import { useState } from "react";
 import "./styles/SaveButton.css";
 
 type userPlaylistsType = {
@@ -23,7 +22,6 @@ function generateID() {
 function SaveButton(props: VideoFormProps) {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const last: string = props.videos[props.videos.length - 1];
-
   let idAndName: string,
     playlistID: string,
     currentName: string = "";
@@ -35,8 +33,8 @@ function SaveButton(props: VideoFormProps) {
   } else {
     currentName = "Unnamed";
   }
-  const [playlistName, setPlalyistName] = useState<string>(currentName);
-
+  const playlistName = currentName;
+  
   async function addPlaylist(
     playlistID: string,
     playlistName: string,
@@ -101,7 +99,7 @@ function SaveButton(props: VideoFormProps) {
               className="playlistNameInput"
               placeholder={currentName}
               maxLength={10}
-              onChange={(e) => setPlalyistName(e.target.value)}
+              onChange={(e) => currentName = e.target.value}
             />
             <button className="saveButton">Save 💾</button>
           </form>
