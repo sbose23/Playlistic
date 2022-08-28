@@ -55,6 +55,7 @@ input:hover {
     margin-bottom: 1em;
     margin: auto;
     width: fit-content;
+    cursor: grab;
 }
 
 .video {
