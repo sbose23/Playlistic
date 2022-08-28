@@ -11,9 +11,9 @@ type VideoFormProps = {
 
 function VideoList(props: VideoFormProps) {
   let videos: Array<string> = [...props.videos];
-
+  let playlistTag = "";
   if (props.videos[props.videos.length - 1].startsWith("Playlist")) {
-    videos.pop();
+    playlistTag = videos.pop() as string;
   }
 
   //handle list drop event
@@ -29,7 +29,8 @@ function VideoList(props: VideoFormProps) {
     } else {
       newList.splice(droppedItem.source.index, 1);
     }
-
+    console.log("tag " + playlistTag)
+    newList.push(playlistTag)
     //set videos prop to the new list
     props.setVideos(newList);
   };
