@@ -18,6 +18,7 @@ function VideoList(props: VideoFormProps) {
 
   //handle list drop event
   const handleDrop = (droppedItem: any) => {
+    console.log(droppedItem)
     //copy current list to new variable
     let newList: Array<string> = [...videos];
 
@@ -25,11 +26,20 @@ function VideoList(props: VideoFormProps) {
     if (droppedItem.destination) {
       const [reorderedItem] = newList.splice(droppedItem.source.index, 1);
       newList.splice(droppedItem.destination.index, 0, reorderedItem);
+      console.log(newList)
       //if drop location outside the list, delete item
     } else {
       newList.splice(droppedItem.source.index, 1);
     }
     newList.push(playlistTag)
+
+    //loop to handle an error adding spaces on drop in list
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i] === "") {
+        newList.splice(i, 1)
+      }
+    }
+    
     //set videos prop to the new list
     props.setVideos(newList);
   };
