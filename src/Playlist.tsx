@@ -24,9 +24,25 @@ type PlaylistProps = {
 };
 
 function Playlist(props: PlaylistProps) {
-  const [videoIndex, nextVideo] = useReducer((index) => index + 1, 0);
+  let len: number = props.videos.length;
   const [playing, setPlaying] = useState<boolean>(false);
-  //console.log("Videos: " + props.videos.toString());
+
+  let videos: Array<string> = [];
+
+  //if video list belongs to playlist, pop last element
+  if (len > 0 && props.videos[len - 1].startsWith("Playlist")) {
+    videos = props.videos.slice(0, len - 1);
+    len -= 1;
+  } else {
+    videos = props.videos;
+  }
+
+  //increment video index if videos are left, otherwise reset to 0
+  const [videoIndex, nextVideo] = useReducer(
+    (index) => (index >= len - 1 ? (index = 0) : index + 1),
+    0
+  );
+
   return (
     <div>
       <h3>
@@ -64,11 +80,10 @@ function Playlist(props: PlaylistProps) {
 
           <p style={videoPlayerStyle}>Video Player 📻 </p>
           <ReactPlayer
-            loop={true}
             width={"100vmin"}
             style={videoPlayerStyle}
             playing={playing}
-            url={props.videos[videoIndex]}
+            url={videos[videoIndex]}
             controls={true}
             onEnded={nextVideo}
           />
