@@ -36,13 +36,12 @@ function SaveButton(props: VideoFormProps) {
   } else {
     playlistName = "Unnamed";
   }
-  
+
   async function addPlaylist(
     playlistID: string,
     playlistName: string,
     playlistVideos: Array<string> = []
   ) {
-
     console.log(
       "Adding playlist with " + playlistID + playlistName + playlistVideos
     );
@@ -74,24 +73,26 @@ function SaveButton(props: VideoFormProps) {
   async function handleSave(e: any) {
     e.preventDefault();
 
-    async function addNew(videos: Array<string>){
-      const id = generateID()
+    async function addNew(videos: Array<string>) {
+      const id = generateID();
       await addPlaylist(id, currentName, videos);
       let newVids: Array<string> = [...props.videos];
-      newVids.push("Playlist~" + id + "-" + currentName)
-      props.setVideos(newVids)
+      newVids.push("Playlist~" + id + "-" + currentName);
+      props.setVideos(newVids);
     }
 
     //if videos have a playlist identification, update it accordingly
     if (last.startsWith("Playlist")) {
+      
       //remove playlist identification tag
       const videos = [...props.videos];
       videos.pop();
-      //console.log("status " + currentName + playlistName)
-      //if the current name is the same as user given name, use same playlistID
-      currentName === playlistName
+
+      //if the current name is the same as user given name or empty (no change), use same playlistID and name
+      currentName === playlistName || currentName === ""
         ? await addPlaylist(playlistID, playlistName, videos)
         : await addNew(videos);
+        
     } else {
       await addNew(props.videos);
     }
