@@ -111,7 +111,7 @@ function UserPlaylists(props: UserPlaylistProps) {
                     const playlistID = playlist.split("-")[0];
                     if (user) {
                       navigator.clipboard.writeText(
-                        "http://localhost:8888/?username=" +
+                        "https://playlistic.netlify.app/?username=" +
                           user.nickname +
                           "&playlistID=" +
                           playlistID
