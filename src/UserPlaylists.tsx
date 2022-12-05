@@ -15,11 +15,10 @@ type UserPlaylistProps = {
 };
 
 function UserPlaylists(props: UserPlaylistProps) {
-
   //destrcture set state for useEffect dependency
   const setUserPlaylists = props.setUserPlaylists;
 
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   async function deletePlaylist(playlist: string) {
     if (!isAuthenticated) {
@@ -105,6 +104,25 @@ function UserPlaylists(props: UserPlaylistProps) {
                   onClick={() => deletePlaylist(playlist)}
                 >
                   Delete
+                </button>{"  "}
+                <button
+                  className="playlistShare"
+                  onClick={() => {
+                    const playlistID = playlist.split("-")[0];
+                    if (user) {
+                      navigator.clipboard.writeText(
+                        "http://localhost:8888/?username=" +
+                          user.nickname +
+                          "&playlistID=" +
+                          playlistID
+                      );
+                      alert("Copied to clipboard.");
+                    } else {
+                      alert("Error: Could not copy to clipboard.");
+                    }
+                  }}
+                >
+                  Share
                 </button>
                 <p className="playlistID">ID: {playlist.split("-")[0]}</p>
                 <hr></hr>

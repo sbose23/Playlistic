@@ -1,3 +1,5 @@
+// DEPRECEATED COMPONENT
+
 import axios from "axios";
 import { useState } from "react";
 import "./styles/PublicSearch.css";

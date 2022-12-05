@@ -91,7 +91,17 @@ a:hover {
   cursor: pointer;
 }
 
-.playlistDelete:hover {
+.playlistShare {
+  font-family: 'Tahoma';
+  color: greenyellow;
+  display: inline;
+  font-weight: 500;
+  font-size: 2.6vmin;
+  padding: 0.6vmin;
   background-color: black;
-  color: red
+  border-color: black;
+  border-radius: 5px;
+  outline-color: black;
+  transition: 0.5s;
+  cursor: pointer;
 }
