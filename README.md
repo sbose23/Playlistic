@@ -4,7 +4,7 @@
 
 Playlistic is a web app to provide an easy way to create, save, edit, and share playlists. I created this app because I was not satisfied with the way playlists have to be made and used on YouTube. 
 
-This app was built with a ReactJS frontend written in TypeScript, Auth0 for user authentication, a [backend REST API made on AWS that stores playlists](https://github.com/sbose23/Playlistic-API), and Netlify functions for secure consumption of the backend API.
+This app was built with a ReactJS frontend written in TypeScript, Auth0 for user authentication, a [backend REST API made on AWS that stores playlists]([https://github.com/sbose23/Playlistic-API](https://github.com/sbose23/Playlistic/tree/main/api)), and Netlify functions for secure consumption of the backend API.
 
 # Features
 
